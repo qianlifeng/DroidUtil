@@ -8,4 +8,4 @@ utils for android
 2. Right click your current developing project and select properties  
 3. Select Android => Library => Add button => select DroidUtil prject  
 4. Clean both project  
-5. Ok to go.  
+5. Good to go.  
