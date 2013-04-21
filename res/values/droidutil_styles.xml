@@ -1,0 +1,10 @@
+<resources>
+    <style name="DroidUtil_CustomTitleBarBackground">
+        <item name="android:background">#47B2FF</item>
+    </style>
+
+    <style name="DroidUtil_CustomTitleBar" parent="android:Theme">
+        <item name="android:windowTitleSize">46dp</item>
+        <item name="android:windowTitleBackgroundStyle">@style/DroidUtil_CustomTitleBarBackground</item>
+    </style>
+</resources>
