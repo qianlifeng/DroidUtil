@@ -44,7 +44,7 @@ public class DateTimeUtil
 			return null;
 		}
 
-		return new SimpleDateFormat(dateFormat).format(date);
+		return new SimpleDateFormat(dateFormat,Locale.ENGLISH).format(date);
 	}
 
 	public static DateFormat getGMTDateFormat()
@@ -61,7 +61,7 @@ public class DateTimeUtil
 			return null;
 		}
 
-		SimpleDateFormat format = new SimpleDateFormat(dateFormat);
+		SimpleDateFormat format = new SimpleDateFormat(dateFormat,Locale.ENGLISH);
 		Date date = null;
 		try
 		{

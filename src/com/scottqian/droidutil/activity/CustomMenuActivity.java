@@ -1,31 +1,59 @@
 package com.scottqian.droidutil.activity;
 
-import com.scottqian.droidutil.R;
-
-import android.app.Activity;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class BaseActivity extends Activity
+import com.scottqian.droidutil.R;
+
+@SuppressLint("Registered")
+public class CustomMenuActivity extends BaseAcitivity
 {
 	private TextView txtTitlebar;
-	protected ImageView imgTitlebarSetting;
+	private  ImageView imgTitlebarSetting;
+	private Boolean enableTitleBar = true;
+	
+	public ImageView getTitlebarSettingImageView()
+	{
+		return imgTitlebarSetting;
+	}
 
-	/**
-	 * 是否需要标题栏
-	 */
-	public Boolean NoTitleBar = false;
+	public Boolean getTitleBarEnabled()
+	{
+		return enableTitleBar == true;
+	}
+	
 
+
+
+	public void setTitleBarEnabled()
+	{
+		enableTitleBar = true;
+	}
+	
+	public void setTitleBarDisabled()
+	{
+		enableTitleBar = false;
+	}
+
+	public void setTitleBarContent(CharSequence title)
+	{
+		if (txtTitlebar != null)
+		{
+			txtTitlebar.setText(title);
+		}
+	}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		if (NoTitleBar)
+		
+		if (!enableTitleBar)
 		{
 			// 不需要标题栏
 			requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -60,47 +88,10 @@ public class BaseActivity extends Activity
 
 	private void AfterSetContentView()
 	{
-		// titlebar为自己标题栏的布局，这个一定要放在setcontentview之后才起作用
+		// droiduitl_titlebar为自己标题栏的布局
+		//这个一定要放在setcontentview之后才起作用
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.droiduitl_titlebar);
 		txtTitlebar = (TextView) findViewById(R.id.txtTitlebar);
 		imgTitlebarSetting = (ImageView) findViewById(R.id.imgTitlebarSetting);
-	}
-
-	protected void ShowMessageLong(String msg)
-	{
-		Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
-	}
-
-	protected void ShowMessageShort(String msg)
-	{
-		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-	}
-
-	protected void ShowMessage(String msg, int timeDuration)
-	{
-		Toast.makeText(this, msg, timeDuration).show();
-	}
-
-	/**
-	 * 设置标题
-	 * 
-	 * @param title
-	 */
-	@Override
-	public void setTitle(CharSequence title)
-	{
-		if (txtTitlebar != null)
-		{
-			txtTitlebar.setText(title);
-		}
-	}
-
-	/**
-	 * 退出程序
-	 */
-	protected void ExitApp()
-	{
-		finish();
-		System.exit(0);
 	}
 }
